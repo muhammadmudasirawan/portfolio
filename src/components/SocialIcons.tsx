@@ -65,13 +65,8 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href="tel:+923128729573">
+          <a href="https://www.linkedin.com/in/muhammad-mudasirsir-68abb32a8/" target="_blank">
             <FaLinkedinIn />
-          </a>
-        </span>
-        <span>
-          <a href="https://muhammadmudasir-portfolio.netlify.app" target="_blank">
-            <FaXTwitter />
           </a>
         </span>
         <span>

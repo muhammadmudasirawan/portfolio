@@ -2,9 +2,12 @@ import { useState, useCallback } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
-import cuidaaprSplash from "../assets/cuidaaprsplash.jpg";
+import cuidaaprSplash from "../assets/cuidaaprsplash.png";
 import cuidaaprLogin from "../assets/cuidaaprlogin.png";
-import cuidaaprHome from "../assets/cuidaaprhome.png";
+import aeonSplash from "../assets/Aeonsplash.jpg";
+import aeonSignin from "../assets/Signin.png";
+import askaiSplash from "../assets/ASKAI.jpg";
+import minimiSplash from "../assets/1_Splash Screen.jpg";
 
 const projects = [
   {
@@ -12,31 +15,21 @@ const projects = [
     category: "Healthcare Mobile App",
     tools: "React Native, TypeScript, REST APIs, Firebase",
     image: cuidaaprSplash,
-    images: [cuidaaprSplash, cuidaaprLogin, cuidaaprHome],
+    images: [cuidaaprSplash, cuidaaprLogin],
   },
   {
     title: "Aeon App",
     category: "School Transport App",
     tools: "React Native, Redux Toolkit, REST APIs",
-    image: "/images/radix.png",
+    image: aeonSplash,
+    images: [aeonSplash, aeonSignin],
   },
   {
     title: "Minimi App",
     category: "Role-Based Healthcare Platform",
     tools: "React Native, Styled Components, Postman",
-    image: "/images/bond.png",
-  },
-  {
-    title: "Reusable UI Kit",
-    category: "Mobile Component System",
-    tools: "React Native CLI, Expo Go, TypeScript",
-    image: "/images/sapphire.png",
-  },
-  {
-    title: "App Performance Optimization",
-    category: "Mobile UX & Performance",
-    tools: "Debugging, API Optimization, Team Collaboration",
-    image: "/images/Maxlife.png",
+    image: askaiSplash,
+    images: [askaiSplash, minimiSplash],
   },
 ];
 

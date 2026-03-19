@@ -26,14 +26,6 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Social</h4>
             <a
-              href="https://moeed-naik-uiux-0v5xgvy.gamma.site/"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Resume Link <MdArrowOutward />
-            </a>
-            <a
               href="mailto:mudasirakhtar980@gmail.com"
               data-cursor="disable"
               className="contact-social"
