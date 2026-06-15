@@ -32,6 +32,14 @@ const Contact = () => {
             >
               Email <MdArrowOutward />
             </a>
+            <a
+              href="/Mudasir-Akhtar-Mobile-CV.pdf"
+              download="Mudasir-Akhtar-CV.pdf"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              Resume <MdArrowOutward />
+            </a>
           </div>
           <div className="contact-box">
             <h2>

@@ -8,6 +8,8 @@ import aeonSplash from "../assets/Aeonsplash.jpg";
 import aeonSignin from "../assets/Signin.png";
 import askaiSplash from "../assets/ASKAI.jpg";
 import minimiSplash from "../assets/1_Splash Screen.jpg";
+import iqpromptOne from "../assets/iqprompt1.png";
+import iqpromptTwo from "../assets/iqprompt2.png";
 
 const projects = [
   {
@@ -30,6 +32,13 @@ const projects = [
     tools: "React Native, Styled Components, Postman",
     image: askaiSplash,
     images: [askaiSplash, minimiSplash],
+  },
+  {
+    title: "IQPROMPT.ai",
+    category: "AI Prompt Enhancement Platform",
+    tools: "Prompt Enhancement, AI Writing Assistant, Professional Output",
+    image: iqpromptOne,
+    images: [iqpromptOne, iqpromptTwo],
   },
 ];
 

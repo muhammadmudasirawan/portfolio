@@ -4,6 +4,7 @@ import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
+import profileImg from "../assets/Profile images.png";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother;
@@ -43,7 +44,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          <img src="/images/mudasir-profile.jpeg" alt="Mudasir Akhtar" />
+          <img src={profileImg} alt="Mudasir Akhtar" />
         </a>
         <a
           href="mailto:mudasirakhtar980@gmail.com"
