@@ -1,15 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
-import profileImg from "../assets/Profile images.png";
+import profileImg from "../assets/Profile images.jpg";
+import { MdClose, MdDownload, MdEmail, MdLocalPhone } from "react-icons/md";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 export let smoother: ScrollSmoother | undefined;
 
 const Navbar = () => {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     try {
       smoother = ScrollSmoother.create({
@@ -39,7 +43,9 @@ const Navbar = () => {
           if (smoother) {
             smoother.scrollTo(section, true, "top top");
           } else if (section) {
-            document.querySelector(section)?.scrollIntoView({ behavior: "smooth" });
+            document
+              .querySelector(section)
+              ?.scrollIntoView({ behavior: "smooth" });
           }
         }
       });
@@ -48,12 +54,102 @@ const Navbar = () => {
       smoother?.refresh();
     });
   }, []);
+
+  useEffect(() => {
+    const closeProfileMenu = (event: MouseEvent) => {
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", closeProfileMenu);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", closeProfileMenu);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
   return (
     <>
       <div className="header">
-        <a href="/#" className="navbar-title" data-cursor="disable">
-          <img src={profileImg} alt="Mudasir Akhtar" />
-        </a>
+        <div className="profile-menu-wrap" ref={profileMenuRef}>
+          <button
+            type="button"
+            className="navbar-title profile-trigger"
+            data-cursor="disable"
+            aria-label="Open profile"
+            aria-expanded={isProfileOpen}
+            onClick={() => setIsProfileOpen((current) => !current)}
+          >
+            <img src={profileImg} alt="Mudasir Akhtar" />
+          </button>
+
+          {isProfileOpen && (
+            <div className="profile-popover" role="dialog" aria-label="Profile">
+              <button
+                type="button"
+                className="profile-close"
+                data-cursor="disable"
+                aria-label="Close profile"
+                onClick={() => setIsProfileOpen(false)}
+              >
+                <MdClose />
+              </button>
+              <img
+                src={profileImg}
+                alt="Mudasir Akhtar"
+                className="profile-popover-img"
+              />
+              <div className="profile-popover-info">
+                <span className="profile-label">Profile</span>
+                <h2>Mudasir Akhtar</h2>
+                <p>Mobile Application Developer</p>
+              </div>
+              <a
+                href="mailto:mudasirakhtar980@gmail.com"
+                className="profile-detail profile-link"
+                data-cursor="disable"
+              >
+                <MdEmail />
+                <div>
+                  <span>Email</span>
+                  <strong>mudasirakhtar980@gmail.com</strong>
+                </div>
+              </a>
+              <a
+                href="tel:+923128729573"
+                className="profile-detail profile-link"
+                data-cursor="disable"
+              >
+                <MdLocalPhone />
+                <div>
+                  <span>Phone</span>
+                  <strong>+92 312 8729573</strong>
+                </div>
+              </a>
+              <a
+                href="/Mudasir-Akhtar-Mobile-CV.pdf"
+                download="Mudasir-Akhtar-CV.pdf"
+                className="profile-cv"
+                data-cursor="disable"
+              >
+                <MdDownload />
+                Download CV
+              </a>
+            </div>
+          )}
+        </div>
         <a
           href="mailto:mudasirakhtar980@gmail.com"
           className="navbar-connect"
