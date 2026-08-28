@@ -2,27 +2,31 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 import profileImg from "../assets/Profile images.png";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+export let smoother: ScrollSmoother | undefined;
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
+    try {
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.7,
+        speed: 1.7,
+        effects: true,
+        autoResize: true,
+        ignoreMobileResize: true,
+      });
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
+      smoother.scrollTop(0);
+      smoother.paused(true);
+    } catch (error) {
+      console.error("ScrollSmoother failed to initialize:", error);
+    }
 
     let links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
@@ -32,12 +36,16 @@ const Navbar = () => {
           e.preventDefault();
           let elem = e.currentTarget as HTMLAnchorElement;
           let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          if (smoother) {
+            smoother.scrollTo(section, true, "top top");
+          } else if (section) {
+            document.querySelector(section)?.scrollIntoView({ behavior: "smooth" });
+          }
         }
       });
     });
     window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+      smoother?.refresh();
     });
   }, []);
   return (
